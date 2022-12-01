@@ -7,7 +7,10 @@ const numbers = [[1,4,2], [3,0,5,], [6,7,8]];
 const orderedNumbers = [[0,1,2], [3,4,5], [6,7,8]];
 
 const direction = ["UP", "DOWN", "LEFT", "RIGHT"];
-
+for (let i = 0; i < numbers.length; i++) {
+  console.log(numbers[i]);
+  
+}
 
 const getPosition =(numbers, number )=>{
   for (let x = 0; x < numbers.length; x++) {
@@ -39,7 +42,7 @@ function moveTile(move) {
 }
 
 
-function up() {
+function down() {
   const position = getPosition(numbers, 0);
   if (position.x - 1 < 0 ) {
       console.log("cant move")
@@ -50,7 +53,7 @@ function up() {
 }
 
 
-function down (){
+function up (){
   const position = getPosition(numbers, 0);
   if (position.x + 1 > 2 ) {
       console.log("cant move")
@@ -61,7 +64,7 @@ function down (){
 }
 
 
-function left(){
+function right(){
   const position = getPosition(numbers, 0);
   if (position.y - 1 < 0 ) {
       console.log("cant move")
@@ -72,7 +75,7 @@ function left(){
 }
 
 
-function right() {
+function left() {
   const position = getPosition(numbers, 0);
   if (position.x + 1 > 2 ) {
       console.log("cant move")
@@ -93,7 +96,7 @@ const swapPosition = (oldPosition, newPosition)=>{
 }
 
 
-const moves = ["UP", "LEFT", "END"]
+const moves = ["DOWN", "RIGHT", "END"]
 
 function startGame(moves) {
   for (let index = 0; index < moves.length; index++) {
