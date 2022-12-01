@@ -30,7 +30,7 @@ const getPosition =(numbers, number )=>{
 
 // a function to move a tile, this check for the kex pressed and move accordingly
 function moveTile(move) {
-  if (JSON.stringify(numbers) === JSON.stringify(orderedNumbers)) {
+  if (comparePuzzle(numbers, orderedNumbers)) {
     console.log("You won!!!!!!!")
     rl.close();
   }else {
@@ -82,7 +82,7 @@ function right(){
 //Moves the number leftwards
 function left() {
   const position = getPosition(numbers, 0);
-  if (position.x + 1 > 3 ) {
+  if (position.y + 1 > 3 ) {
       console.log("cant move")
   }else{
     swapPosition(position, {x:position.x, y:position.y +1})
@@ -100,13 +100,31 @@ const swapPosition = (oldPosition, newPosition)=>{
   }
 }
 
+//checks if the puzzle is sorted in order
+function comparePuzzle(unordered, ordered) {
+  if (unordered.length !== ordered.length) {
+    return false;
+  }else{
+    for (let index = 0; index < unordered.length; index++) {
+        for (let j = 0; j < unordered[index].length; j++) {
+          if (unordered[index][j] === ordered[index][j]) {
+            return true;
+          }
+          else{
+            return false;
+          }
+          
+        }
+    }
+  }
 
+}
 
 
 function startGame() {
   rl.question("Your Move ? ", function(move) {
     moveTile(move);
-    if (JSON.stringify(numbers) === JSON.stringify(orderedNumbers)) {
+    if (comparePuzzle(numbers, orderedNumbers)) {
       console.log("You won!!!!!!!")
       return rl.close();
     }else{
